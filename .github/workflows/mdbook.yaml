@@ -1,0 +1,48 @@
+name: Deploy mdBook
+
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v1
+        with:
+          mdbook-version: "0.5.2"
+
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: "_tools/mdbook-drawio -> target"
+
+      - name: Build Drawio Preprocessor
+        run: |
+          cd _tools/mdbook-drawio
+          cargo build --release
+          sudo cp target/release/mdbook-drawio /usr/local/bin/
+
+      - name: Install Mermaid Preprocessor
+        run: cargo install mdbook-mermaid --version 0.17.0
+
+      - name: Build Book
+        run: mdbook build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./book
