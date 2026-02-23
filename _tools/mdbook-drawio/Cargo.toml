@@ -1,0 +1,18 @@
+[package]
+name = "mdbook-drawio"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+mdbook-preprocessor = "0.5.2"
+mdbook-core = "0.5.2"
+mdbook = "0.5.2"
+regex = "1.9.5"
+serde_json = "1.0"
+
+[profile.release]
+opt-level = 'z'
+lto = true
+codegen-units = 1
+strip = true
+panic = 'abort'
