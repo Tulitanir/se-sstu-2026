@@ -35,6 +35,9 @@ jobs:
           cargo build --release
           sudo cp target/release/mdbook-drawio /usr/local/bin/
 
+      - name: Install Mermaid Preprocessor
+        run: cargo install mdbook-mermaid
+
       - name: Build Book
         run: mdbook build
 
