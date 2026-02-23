@@ -11,6 +11,12 @@ create-missing = true
 [preprocessor.drawio]
 command = "mdbook-drawio"
 
+[preprocessor.mermaid]
+command = "mdbook-mermaid"
+
+[output.html]
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
+
 [output.html]
 additional-css = ["src/_assets/custom.css"]
 additional-js = []
