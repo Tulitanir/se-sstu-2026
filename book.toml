@@ -15,8 +15,5 @@ command = "mdbook-drawio"
 command = "mdbook-mermaid"
 
 [output.html]
-additional-js = ["mermaid.min.js", "mermaid-init.js"]
-
-[output.html]
 additional-css = ["src/_assets/custom.css"]
-additional-js = []
+additional-js = ["mermaid.min.js", "mermaid-init.js"]
