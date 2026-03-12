@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>se-sstu-2026</title>
-        <meta name="robots" content="noindex">
+        <title>Сценарии - se-sstu-2026</title>
 
 
         <!-- Custom HTML head -->
@@ -13,34 +12,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="favicon-8114d1fc.png">
-        <link rel="stylesheet" href="css/variables-8adf115d.css">
-        <link rel="stylesheet" href="css/general-2459343d.css">
-        <link rel="stylesheet" href="css/chrome-ae938929.css">
-        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="src/_assets/custom-8e11fbbb.css">
+        <link rel="stylesheet" href="../src/_assets/custom-8e11fbbb.css">
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "";
+            const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-74558dbb.js";
+            window.path_to_searchindex_js = "../searchindex-74558dbb.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-e00fcf20.js"></script>
+        <script src="../toc-e00fcf20.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -107,7 +106,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
             </noscript>
             <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -142,7 +141,7 @@
                     <h1 class="menu-title">se-sstu-2026</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
@@ -176,59 +175,7 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="внешние-сущности-и-интеграции"><a class="header" href="#внешние-сущности-и-интеграции">Внешние сущности и интеграции</a></h1>
-<p>Взаимодействие проектируемой системы с основными пользователями и внешними сервисами приведено на 1 уровне (Контекст) диаграммы С4:</p>
-<p>@drawio{https://github.com/Tulitanir/se-sstu-2026/tree/main/src/drawio/c4-context.draw.io}</p>
-<h2 id="внешние-сущности-и-обоснование-их-интеграции"><a class="header" href="#внешние-сущности-и-обоснование-их-интеграции">Внешние сущности и обоснование их интеграции</a></h2>
-<ol>
-<li>Интеграция с системой единого входа (SSO)</li>
-</ol>
-<ul>
-<li>Студенты и преподаватели используют единые корпоративные учётные данные. Нет необходимости запоминать ещё один логин и пароль.</li>
-<li>Учётная запись в платформе создаётся автоматически при первом входе, синхронизация атрибутов (ФИО, email, группа) происходит из SSO</li>
-<li>При отсутствии внешнего SSO платформа может выступать собственным Identity Provider.</li>
-</ul>
-<ol start="2">
-<li>Интеграция с LMS (Moodle)</li>
-</ol>
-<ul>
-<li>Moodle содержит мощный, отлаженный движок тестирования: десятки типов вопросов, гибкие настройки оценивания и поведения теста. Разработка аналогичного функционала “с нуля” это очень время и трудозатратная задача.</li>
-<li>Университеты, использующие Moodle как основную LMS, не хотят переносить курсы и тесты в новую систему.</li>
-</ul>
-<ol start="3">
-<li>Интеграция с облачным объектным хранилищем</li>
-</ol>
-<ul>
-<li>Использование сертифицированных российских облаков (Яндекс.Облако, VK Cloud) с аттестацией ФСТЭК позволяет выполнить требования 152-ФЗ о хранении персональных данных на территории РФ и использовании сертифицированных средств защиты.</li>
-<li>Провайдеры (Яндекс.Облако, VK Cloud, AWS S3) обеспечивают репликацию данных в нескольких дата-центрах, гарантируя сохранность даже при выходе из строя оборудования.</li>
-</ul>
-<ol start="4">
-<li>Интеграция с SFU-сервером</li>
-</ol>
-<ul>
-<li>Организация низколатентной видеосвязи с десятками одновременных участников для бесперебойного контроля проведения экзамена</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="стейкхолдеры"><a class="header" href="#стейкхолдеры">Стейкхолдеры</a></h1>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Группа</th><th>Цели и интересы</th><th>Боли и риски</th><th>Что поставляет</th><th>Что получает</th></tr>
-</thead>
-<tbody>
-<tr><td>Студент</td><td>Успешно завершить курс</td><td>стресс, ложные срабатывания</td><td>Выполнение заданий, сдача тестов и экзаменов</td><td>Доступ к обучающим материалам и тестированию</td></tr>
-<tr><td>Преподаватель</td><td>Обучение студентов</td><td>Списывания, высокая нагрузка, недостоверность результатов</td><td>Учебные материалы по курсу, проверка заданий</td><td>Отчеты об успеваемости, Отчеты о проведении экзаменов</td></tr>
-<tr><td>Проктор</td><td>Честность экзамена</td><td>Сбои, риск пропустить аномалии поведения экзаменуемого</td><td>Проверка и мониторинг</td><td>Инструменты для прокторинга</td></tr>
-<tr><td>Образовательная организация</td><td>Обучение студентов, благосостояние преподавателей</td><td>Репутация, Жалобы студентов и преподавателей</td><td>Учебная программа, организация и настройка параметров экзамена</td><td>Система обучения и контроля, Отчеты о результатах осуществления образовательной деятельности</td></tr>
-<tr><td>Министерство образования</td><td>Контроль качества</td><td>Нарушения, непрозрачность, жалобы</td><td>Требования, стандарты</td><td>Соблюдение образовательных стандартов</td></tr>
-<tr><td>ТехПоддержка</td><td>быстро решать возникающие проблемы</td><td>Злые студенты, преподаватели и администрации, отсутствие полномочий решить проблему</td><td>Отчеты о багах и пожеланиях пользователей</td><td>Информацию о проблемах</td></tr>
-<tr><td>Поставщик платформы</td><td>Стабильность работы системы, прибыль</td><td>Сбои интеграций и системы, сложность масштабирования, требования от МинОбра и юристов</td><td>Поддержание работы платформы</td><td>Централизированное управление сервисом</td></tr>
-<tr><td>Юрист</td><td>Соблюдение законодательства</td><td>Нарушение законодательства</td><td>Регламент</td><td>Соблюдение закона</td></tr>
-</tbody>
-</table>
-</div>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="сценарии-использования-системы-прокторинга"><a class="header" href="#сценарии-использования-системы-прокторинга">Сценарии использования системы прокторинга</a></h1>
+                        <h1 id="сценарии-использования-системы-прокторинга"><a class="header" href="#сценарии-использования-системы-прокторинга">Сценарии использования системы прокторинга</a></h1>
 <h2 id="сценарий-1-регистрациявход-студента-через-sso"><a class="header" href="#сценарий-1-регистрациявход-студента-через-sso">Сценарий 1. Регистрация/вход студента через SSO</a></h2>
 <h3 id="цель"><a class="header" href="#цель">Цель</a></h3>
 <p>Вход студента в систему с назначением корректной роли.</p>
@@ -413,16 +360,18 @@
 <li>БД платформы недоступна
 1.1 Апелляция ставится в очередь и отправляется автоматически после восстановления работы БД.</li>
 </ol>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="требования-стейкхолдеров"><a class="header" href="#требования-стейкхолдеров">Требования стейкхолдеров</a></h1>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="системные-требования"><a class="header" href="#системные-требования">Системные требования</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../conops/stakeholders.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
 
+                            <a rel="next prefetch" href="../required/stakeholder-req.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -430,7 +379,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../conops/stakeholders.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
 
+                    <a rel="next prefetch" href="../required/stakeholder-req.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>
@@ -448,23 +403,18 @@
         </script>
 
 
-        <script src="elasticlunr-ef4e11c1.min.js"></script>
-        <script src="mark-09e88c2c.min.js"></script>
-        <script src="searcher-c2a407aa.js"></script>
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
 
-        <script src="clipboard-1626706a.min.js"></script>
-        <script src="highlight-abc7f01d.js"></script>
-        <script src="book-a0b12cfe.js"></script>
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="mermaid-eefea253.min.js"></script>
-        <script src="mermaid-init-ccf746f1.js"></script>
+        <script src="../mermaid-eefea253.min.js"></script>
+        <script src="../mermaid-init-ccf746f1.js"></script>
 
-        <script>
-        window.addEventListener('load', function() {
-            window.setTimeout(window.print, 100);
-        });
-        </script>
 
 
     </div>
