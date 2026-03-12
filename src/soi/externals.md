@@ -2,7 +2,7 @@
 
 Взаимодействие проектируемой системы с основными пользователями и внешними сервисами приведено на 1 уровне (Контекст) диаграммы С4:
 
-@drawio{https://github.com/Tulitanir/se-sstu-2026/tree/main/src/drawio/c4-context.drawio}
+@drawio{https://github.com/Tulitanir/se-sstu-2026/blob/main/src/drawio/c4-context.drawio}
 
 ## Внешние сущности и обоснование их интеграции
 1. Интеграция с системой единого входа (SSO)
