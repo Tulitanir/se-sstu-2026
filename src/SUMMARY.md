@@ -1,15 +1,16 @@
 # Summary
 
 # Контекст и границы SoI
-- [Сценарии](./soi/externals.md)
+- [Контекст](./soi/externals.md)
 
 # CONOPS
 - [Стейкхолдеры](./conops/stakeholders.md)
 - [Сценарии](./conops/pathways.md)
 
 # Требования
-- [Требования стейкхолдеров](./required/stakeholder-req.md)
-- [Системные требования](./required/system-req.md)
+<!-- - [Хотелки стейкхолдеров](./required/stakeholder-wishes.md) -->
+<!-- - [Требования стейкхолдеров](./required/stakeholder-req.md) -->
+<!-- - [Системные требования](./required/system-req.md) -->
 <!-- - [Нефункциональные требования](./required/nfr.md) -->
 
 <!-- # Архитектура
