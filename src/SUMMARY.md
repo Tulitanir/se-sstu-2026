@@ -9,8 +9,7 @@
 
 # Требования
 - [Требования стейкхолдеров](./required/stakeholder-wishes.md)
-<!-- - [Требования стейкхолдеров](./required/stakeholder-req.md) -->
-<!-- - [Системные требования](./required/system-req.md) -->
+- [Системные требования](./required/system-requirements.md)
 <!-- - [Нефункциональные требования](./required/nfr.md) -->
 
 <!-- # Архитектура
