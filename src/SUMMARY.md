@@ -8,7 +8,7 @@
 - [Сценарии](./conops/pathways.md)
 
 # Требования
-<!-- - [Хотелки стейкхолдеров](./required/stakeholder-wishes.md) -->
+[Требования стейкхолдеров](./required/stakeholder-wishes.md)
 <!-- - [Требования стейкхолдеров](./required/stakeholder-req.md) -->
 <!-- - [Системные требования](./required/system-req.md) -->
 <!-- - [Нефункциональные требования](./required/nfr.md) -->
