@@ -1,25 +1,7 @@
 # Summary
 
-# Контекст и границы SoI
-- [Контекст](./soi/externals.md)
-
-# CONOPS
-- [Стейкхолдеры](./conops/stakeholders.md)
-- [Сценарии](./conops/pathways.md)
-
-# Требования
-- [Требования стейкхолдеров](./required/stakeholder-wishes.md)
-- [Системные требования](./required/system-requirements.md)
-<!-- - [Нефункциональные требования](./required/nfr.md) -->
-
-<!-- # Архитектура
-- [Архитектура](./architecture.md)
-
-# Интерфейсы
-- [Интерфейсы](./interfaces.md)
-
-# иРиски
-- [иРиски](./risks.md)
-
-# V&V
-- [V&V](./vv.md) -->
+- [1. Контекст и границы SoI](./soi/externals.md)
+- [2.1. Стейкхолдеры](./conops/stakeholders.md)
+- [2.2. Сценарии, Исключения, Деградации](./conops/pathways.md)
+- [3.1. Требования стейкхолдеров](./required/stakeholder-wishes.md)
+- [3.2. Системные требования](./required/system-requirements.md)
