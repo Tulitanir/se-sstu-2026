@@ -3,8 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Page not found - se-sstu-2026</title>
-        <base href="/">
+        <title>4.2.3. Обоснование архитектурных решений - 3 - se-sstu-2026</title>
 
 
         <!-- Custom HTML head -->
@@ -13,34 +12,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="favicon-8114d1fc.png">
-        <link rel="stylesheet" href="css/variables-8adf115d.css">
-        <link rel="stylesheet" href="css/general-2459343d.css">
-        <link rel="stylesheet" href="css/chrome-ae938929.css">
-        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="src/_assets/custom-8e11fbbb.css">
+        <link rel="stylesheet" href="../src/_assets/custom-8e11fbbb.css">
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
-            const path_to_root = "";
+            const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-29ac313f.js";
+            window.path_to_searchindex_js = "../searchindex-29ac313f.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-56027f3d.js"></script>
+        <script src="../toc-56027f3d.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -107,7 +106,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
             </noscript>
             <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -142,7 +141,7 @@
                     <h1 class="menu-title">se-sstu-2026</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
 
@@ -176,14 +175,75 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="document-not-found-404"><a class="header" href="#document-not-found-404">Document not found (404)</a></h1>
-<p>This URL is invalid, sorry. Please use the navigation bar or search to continue.</p>
+                        <h2 id="adr-3-выбор-технологии-кеширования-для-обеспечения-отказоустойчивости-при-недоступности-sso"><a class="header" href="#adr-3-выбор-технологии-кеширования-для-обеспечения-отказоустойчивости-при-недоступности-sso">ADR-3. Выбор технологии кеширования для обеспечения отказоустойчивости при недоступности SSO</a></h2>
+<h3 id="контекст"><a class="header" href="#контекст">Контекст</a></h3>
+<p>Платформа онлайн-прокторинга должна сохранять доступ для студентов с активной сессией даже при отказе системы SSO.
+По требованию NFR-2, при недоступности SSO система должна обеспечивать доступ для пользователей с валидной локальной сессией в 99.9% случаев, но не должна создавать новые сессии.</p>
+<p>Основные требования для этого сценария:</p>
+<ul>
+<li>NFR-2: доступность авторизованных операций 99.5% в месяц, сохранение доступа при отказе SSO 99.9%</li>
+<li>SR-SYS-8: при недоступности SSO система запрещает новые входы, но работает для пользователей с действующей сессией</li>
+<li>SR-SYS-21: если SSO отвалился во время экзамена, студент продолжает его без прерывания</li>
+</ul>
+<p>Проблема в том, что без локального хранилища сессий система не сможет проверить, кто есть кто, когда SSO недоступен.</p>
+<hr>
+<h3 id="рассматриваемые-варианты"><a class="header" href="#рассматриваемые-варианты">Рассматриваемые варианты</a></h3>
+<ol>
+<li>Локальное хранение сессий в памяти каждого сервера приложений</li>
+<li>Redis (master-replica с sentinel)</li>
+<li>Хранение сессий в реляционной базе данных</li>
+</ol>
+<hr>
+<h3 id="решение"><a class="header" href="#решение">Решение</a></h3>
+<p>Используем <strong>Redis</strong> для хранения пользовательских сессий.</p>
+<hr>
+<h3 id="обоснование"><a class="header" href="#обоснование">Обоснование</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Критерий</th><th>Локальный кеш</th><th>Redis</th><th>Только БД</th></tr>
+</thead>
+<tbody>
+<tr><td>Сессии видны со всех серверов</td><td>Нет</td><td>Да</td><td>Да</td></tr>
+<tr><td>Быстрая проверка сессии</td><td>Да (&lt; 0.1 мс)</td><td>Да (&lt; 1 мс)</td><td>Нет (5-15 мс)</td></tr>
+<tr><td>Сессии не пропадают при рестарте</td><td>Нет</td><td>Да</td><td>Да</td></tr>
+<tr><td>Автоочистка просроченных сессий</td><td>Да</td><td>Да</td><td>Нужна ручная настройка</td></tr>
+<tr><td>Автоматическое восстановление при отказе</td><td>Нет</td><td>Да (sentinel)</td><td>Да</td></tr>
+</tbody>
+</table>
+</div>
+<p>Факторы выбора Redis:</p>
+<ol>
+<li>Сессии видны с любого сервера. При локальном кеше сессия есть только на том сервере, где студент выполнил вход. Если запрос придет на другой сервер, он решит, что студент не авторизован. Это нарушает NFR-2.</li>
+<li>При рестарте сервера локальный кеш очищается. Студенты, которые сдавали экзамен, потеряют сессию и не смогут его закончить. Redis хранит сессии на диске и восстанавливает их после перезапуска.</li>
+<li>Sentinal автоматически переключит на реплику, если основной Redis упал. Система продолжит работать без ручного вмешательства.</li>
+</ol>
+<hr>
+<h3 id="последствия"><a class="header" href="#последствия">Последствия</a></h3>
+<p>Позитивные:</p>
+<ul>
+<li>Система не зависит от SSO при проверке уже активных сессий</li>
+<li>Выполняется NFR-2 (доступность 99.9% для пользователей с сессией)</li>
+<li>При отказе SSO во время экзамена студент ничего не замечает (SR-SYS-21)</li>
+</ul>
+<p>Негативные:</p>
+<ul>
+<li>Нужно следить за сроком жизни сессии в Redis, чтобы он совпадал с токеном SSO</li>
+<li>Каждый запрос требует проверки сессии в Redis (сетевой вызов, но очень быстрый)</li>
+<li>Если весь Redis упадёт, проверять сессии станет нечем (но sentinel и реплики снижают этот риск)</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../arch/adr2.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
 
+                            <a rel="next prefetch" href="../risks/risks.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -191,7 +251,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../arch/adr2.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
 
+                    <a rel="next prefetch" href="../risks/risks.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
             </nav>
 
         </div>
@@ -209,17 +275,17 @@
         </script>
 
 
-        <script src="elasticlunr-ef4e11c1.min.js"></script>
-        <script src="mark-09e88c2c.min.js"></script>
-        <script src="searcher-c2a407aa.js"></script>
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
 
-        <script src="clipboard-1626706a.min.js"></script>
-        <script src="highlight-abc7f01d.js"></script>
-        <script src="book-a0b12cfe.js"></script>
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="mermaid-eefea253.min.js"></script>
-        <script src="mermaid-init-ccf746f1.js"></script>
+        <script src="../mermaid-eefea253.min.js"></script>
+        <script src="../mermaid-init-ccf746f1.js"></script>
 
 
 
