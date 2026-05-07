@@ -6,6 +6,7 @@
 
 @drawio{https://github.com/Tulitanir/se-sstu-2026/blob/main/src/drawio/c4-component.drawio}
 
+## Описание компонент их взаимодействие
 ### 1. Сервер Прокторинга
 #### Компоненты
 1. Proctoring  API - API для взаиможейтсвия с сервером
