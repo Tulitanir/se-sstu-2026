@@ -32,7 +32,8 @@
 15. Proctoring API отправляет сообщения для студента в Desktop App Websockets соединение, полученные от Proccessed Proctoring Events
 16. Proctoting API принимает запрос на публикацию события действия пользователя в системе, и помещает его в Raw User System Events
 17. Settings Handler получает сообщения из очереди Settings и вносит изменения в хранилище актуальных настроек
-18. Proctoring API принимает запрос о получении локальных записей (в случае недоступности ранее), и делегирует задачу сохранения Archive Manager'у
+18. Settings Handler отправляет сообщения в очереди Response для подтверждения применения настроек
+19. Proctoring API принимает запрос о получении локальных записей (в случае недоступности ранее), и делегирует задачу сохранения Archive Manager'у
 #### Ответственные
 За сервер прокторинга отвественная команда разработчиков А, в частности Backend Python Developers, ML Engineer, Testers
 
@@ -52,8 +53,9 @@
 6. Auth Manager хранит информацию об активных сессиях в Redis Cache.
 7. Policy Manager ведет историю настроек прокторинга в Proctoring Settings Database
 8. Policy Manager публикует события об изменении настроект прокторинга в очередь Settings
-9. Conflict Resolution Manager использует историю настроек прокторинга из Proctoring Settings Database для сопоставления с медиасобытиями в случае оффлайн-прокторинга
-10. Conflict Resolution Manager использует медиаматериалы, запрашивая из российского облачного хранилища
+9. Policy Manager получает сообщения об изменении настроек сервером прокторинга из очереди Response
+10. Conflict Resolution Manager использует историю настроек прокторинга из Proctoring Settings Database для сопоставления с медиасобытиями в случае оффлайн-прокторинга
+11. Conflict Resolution Manager использует медиаматериалы, запрашивая из российского облачного хранилища
 #### Ответственные
 За Основной Backend отвественна команда разработчиков Б, в частности Backend Go Developers, Testers
 
