@@ -1,0 +1,675 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>5.1. Интерфейсы - se-sstu-2026</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../src/_assets/custom-8e11fbbb.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "light";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-3c734a19.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-f190417b.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
+            }
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
+            }
+        </script>
+
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="mdbook-page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">se-sstu-2026</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="интерфейсы"><a class="header" href="#интерфейсы">Интерфейсы</a></h1>
+<p>Представлены информация о событии, типе взаимодействия и схемы для очередей в проектируемой системе:</p>
+<ol>
+<li>Settings</li>
+<li>Response</li>
+<li>Anticheat Events</li>
+<li>Proccessed Proctoring Events</li>
+</ol>
+<h2 id="1-settings"><a class="header" href="#1-settings">1. Settings</a></h2>
+<p>Очередь settings предназначена для перессылки сообщений об изменении настроек прокторинга и чувстввительности антчита от основного сервера до сервера прокторинга</p>
+<h3 id="общая-информация-о-событииэндпоинте"><a class="header" href="#общая-информация-о-событииэндпоинте">Общая информация о событии/эндпоинте</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Параметр</th><th>Значение</th></tr>
+</thead>
+<tbody>
+<tr><td>Тип взаимодействия</td><td>очередь (Kafka)</td></tr>
+<tr><td>Название топика</td><td>proctoring.settings.v1</td></tr>
+<tr><td>Producer</td><td>Основной Backend (Go, Policy Manager)</td></tr>
+<tr><td>Consumer</td><td>Сервер Прокторинга (Python, Settings Handler)</td></tr>
+<tr><td>Гарантия доставки</td><td>at-least-once</td></tr>
+<tr><td>Требования Retry</td><td>3 попытки с экспоненциальной задержкой</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="protobuf-схема-с-описанием-полей"><a class="header" href="#protobuf-схема-с-описанием-полей">Protobuf-схема с описанием полей</a></h3>
+<pre><code>syntax = "proto3";
+
+package proctoring.settings.v1;
+
+option go_package = "proctoring/settings/v1;settingsv1";
+
+// Сообщение для публикации изменения настроек прокторинга
+message ProctoringSettingsUpdate {
+  // Уникальный идентификатор (UUID)
+  string policy_version_id = 1;
+  
+  // Тип операции
+  OperationType operation = 2;
+  
+  // Временная метка изменения (unix timestamp, в миллисекундах)
+  int64 changed_at_ms = 3;
+  
+  // Идентификатор пользователя, применившего изменение
+  string changed_by_user_id = 4;
+  
+  // Набор правил прокторинга
+  ProctoringRules rules = 5;
+  
+  // Информация для валидации и целостности
+  ValidationInfo validation = 6;
+}
+
+enum OperationType {
+  OPERATION_UNSPECIFIED = 0;
+  DRAFT_UPDATED = 1;       // изменение черновика - не применяется к новым экзаменам
+  VERSION_PUBLISHED = 2;   // публикация новой версии - применяяется к новым экзаменам
+  VERSION_ROLLBACK = 3;    // возврат к предыдущей версии
+}
+
+// Основные настройки прокторинга
+message ProctoringRules {
+  // Максимальное допустимое количество переключений вкладок
+  int32 max_tab_switches = 1;
+  
+  // Максимальное количество подозрительных событий до фиксации нарушения
+  int32 max_suspicious_events = 2;
+  
+  // Параметры античита
+  AnticheatConfig anticheat = 3;
+  
+  // Включённые типы проверок в виде битоввой маски
+  int32 enabled_checks_mask = 4;
+}
+
+// Конфигурация античита
+message AnticheatConfig {
+  // Чувствительность детектора лиц (0.0 - 1.0)
+  float face_detection_sensitivity = 1;
+  
+  // Чувствительность детектора на второе лицо в кадре (0.0 - 1.0)
+  float multi_face_sensitivity = 2;
+  
+  // Чувствительность детектора на отсутствие лица (0.0 - 1.0)
+  float no_face_sensitivity = 3;
+  
+  // Разрешённое отклонение взгляда в градусах
+  int32 gaze_angle_threshold_deg = 4;
+  
+  // Включена ли проверка посторонних приложений
+  bool check_unauthorized_apps = 5;
+}
+
+// Информация для валидации и верификации
+message ValidationInfo {
+  // Контрольная сумма настроек (SHA-256)
+  string settings_hash = 1;
+  
+  // Обязательность применения: true - должна быть применена обязательно
+  bool mandatory = 2;
+  
+  // Ожидаемое время применения, в миллисекнудах
+  int64 expected_apply_deadline_ms = 3;
+}
+</code></pre>
+<h3 id="возможные-ошибки-при-обработке"><a class="header" href="#возможные-ошибки-при-обработке">Возможные ошибки при обработке</a></h3>
+<ol>
+<li>VALIDATION_HASH_MISMATCH	- settings_hash не соответствует вычисленному</li>
+<li>POLICY_VERSION_ALREADY_APPLIED - версия уже применена, дубликат policy_version_id</li>
+<li>APPLY_TIMEOUT - Превышено ожидаемое время применения (&gt; expected_apply_deadline_ms)</li>
+</ol>
+<hr>
+<h2 id="2-response"><a class="header" href="#2-response">2. Response</a></h2>
+<p>Очередь response предназначена для получения подтверждений об изменении настроек прокторинга со стороны сервера прокторинга</p>
+<h3 id="общая-информация-о-событииэндпоинте-1"><a class="header" href="#общая-информация-о-событииэндпоинте-1">Общая информация о событии/эндпоинте</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Параметр</th><th>Значение</th></tr>
+</thead>
+<tbody>
+<tr><td>Тип взаимодействия</td><td>очередь (Kafka)</td></tr>
+<tr><td>Название топика</td><td>proctoring.settings.response.v1</td></tr>
+<tr><td>Producer</td><td>Сервер Прокторинга (Python, Settings Handler)</td></tr>
+<tr><td>Consumer</td><td>Основной Backend (Go, Policy Manager)</td></tr>
+<tr><td>Гарантия доставки</td><td>at-least-once</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="protobuf-схема-с-описанием-полей-1"><a class="header" href="#protobuf-схема-с-описанием-полей-1">Protobuf-схема с описанием полей</a></h3>
+<pre><code>syntax = "proto3";
+
+package proctoring.settings.response.v1;
+
+option go_package = "proctoring/settings/response/v1;responsev1";
+
+// Cообщение для подтверждения применения настроек
+message SettingsApplyConfirmation {
+    // Уникальный идентификатор (из исходного запроса)
+    string policy_version_id = 1;
+    
+    // Результат применения
+    ApplyResult result = 2;
+    
+    // Временная метка, когда сервер прокторинга завершил попытку
+    int64 processed_at = 3;
+    
+    // Идентификатор экземпляра сервера прокторинга
+    string proctoring_instance_id = 4;
+    
+    // Детали результата 
+    oneof details {
+        SuccessDetails success = 5;
+        FailureDetails failure = 6;
+        PartialSuccessDetails partial_success = 7;
+    }
+}
+
+// Успешное применение
+message SuccessDetails {
+    // Время, когда настройки вступили в силу
+    int64 applied_at = 1;
+    
+    // Идентификатор версии, которая была активна до этого (для откатов)
+    string previous_policy_version_id = 2;
+    
+    // Контрольная сумма применённых настроек
+    string applied_settings_hash = 3;
+}
+
+// Полная неудача при применении
+message FailureDetails {
+    // Код ошибки
+    FailureCode code = 1;
+    
+    // Описание
+    string message = 2;
+    
+    // Была ли сделана повторная попытка
+    bool retry_attempted = 3;
+}
+
+// Частичное применение (например, античит обновился, а прокторинг медиапотока - нет)
+message PartialSuccessDetails {
+    // Какие компоненты успешно обновлены
+    repeated Component updated_components = 1;
+    
+    // Какие компоненты не обновлены
+    repeated Component failed_components = 2;
+    
+    // Общее сообщение о статусе
+    string summary = 3;
+    
+    // Таймаут, через который будет повторная попытка (ms)
+    int32 retry_after_ms = 4;
+}
+
+// Результат применения (enum)
+enum ApplyResult {
+    RESULT_UNSPECIFIED = 0;
+    SUCCESS = 1;              // полностью успешно
+    FAILURE = 2;              // полностью не успешно
+    PARTIAL_SUCCESS = 3;      // частично успешно
+}
+
+// Коды ошибок
+enum FailureCode {
+    FAILURE_UNSPECIFIED = 0;
+    VALIDATION_HASH_MISMATCH = 1;        // хеш не совпал 
+    POLICY_VERSION_ALREADY_APPLIED = 2;  // версия уже применена
+    APPLY_TIMEOUT = 3;                   // превышен лимит ожидания применения
+    INTERNAL_ERROR = 4;                  // прочая внутренняя ошибка
+}
+
+// Компоненты системы прокторинга
+enum Component {
+    COMPONENT_UNSPECIFIED = 0;
+    ANTICHEAT_HANDLER = 1;
+    STREAM_HANDLER = 2;
+}
+</code></pre>
+<h2 id="3-anticheat-events"><a class="header" href="#3-anticheat-events">3. Anticheat Events</a></h2>
+<p>Очередь anticheat предназначена для накопления событий, зафиксированных античит-модулей на основе событий действий пользователя в системе</p>
+<h3 id="общая-информация-о-событииэндпоинте-2"><a class="header" href="#общая-информация-о-событииэндпоинте-2">Общая информация о событии/эндпоинте</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Параметр</th><th>Значение</th></tr>
+</thead>
+<tbody>
+<tr><td>Тип взаимодействия</td><td>очередь (Kafka)</td></tr>
+<tr><td>Название топика</td><td>proctoring.anticheat.events.v1</td></tr>
+<tr><td>Producer</td><td>Anticheat Handler (Python)</td></tr>
+<tr><td>Consumer</td><td>1. Archive Manager (Python)<br>2. Proctoring API (Python)</td></tr>
+<tr><td>Гарантия доставки</td><td>at-least-once</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="protobuf-схема-с-описанием-полей-2"><a class="header" href="#protobuf-схема-с-описанием-полей-2">Protobuf-схема с описанием полей</a></h3>
+<pre><code>syntax = "proto3";
+
+package proctoring.anticheat.events.v1;
+
+option go_package = "proctoring/anticheat/events/v1;eventsv1";
+
+// Cообщение для событий античита
+message AnticheatEvent {
+    // Уникальный идентификатор события
+    string event_id = 1;
+    
+    // Идентификатор экзаменационной сессии (связь с прокторинг-сессией)
+    string session_id = 2;
+    
+    // Идентификатор студента (из SSO)
+    string student_id = 3;
+    
+    // Тип события
+    EventType event_type = 4;
+    
+    // Уровень серьёзности
+    SeverityLevel severity = 5;
+    
+    // Время фиксации события
+    int64 detected_at_unix_ms = 6;
+    
+    // Время относительно начала экзамена (в миллисекундах)
+    int64 offset_from_start_ms = 7;
+    
+    // Метаданные события
+    oneof details {
+        TabSwitchDetails tab_switch = 8;
+        AppSwitchDetails app_switch = 9;
+        SystemViolationDetails system_violation = 10;
+        NetworkIssueDetails network_issue = 11;
+        CustomEventDetails custom_event = 12;
+    }
+    
+    // Контрольная сумма события
+    string event_hash = 15;
+}
+
+// Типы событий античита
+enum EventType {
+    EVENT_TYPE_UNSPECIFIED = 0;
+    
+    // Нарушения переключения контекста
+    TAB_SWITCH = 1;              // Переключение вкладки
+    WINDOW_BLUR = 2;             // Потеря фокуса окна
+
+    // Приложения и окружение
+    SCREEN_CAPTURE_DETECTED = 3;     // Обнаружена попытка захвата экрана
+    VM_DETECTED = 4;                 // Обнаружена виртуальная машина
+    DEBUGGER_DETECTED = 5;           // Обнаружен отладчик
+    
+    // Поведенческие аномалии
+    RAPID_TYPING = 6;                // Аномально быстрый ввод
+    IDLE_TIMEOUT = 7;                // Долгое бездействие
+    
+    // Сетевые и системные
+    CONNECTION_LOST = 8;             // Потеря соединения
+    CONNECTION_RESTORED = 9;         // Восстановление соединения
+    HIGH_LATENCY = 10;                // Высокая задержка (&gt; 500 мс)
+    
+    // Составные нарушения
+    SUSPICIOUS_BEHAVIOR = 19;         // Комплексное подозрительное поведение
+    VIOLATION_CONFIRMED = 20;         // Нарушение подтверждено проктором
+    
+    // Расширяемые типы (для других сценариев)
+    CUSTOM = 99;
+}
+
+// Уровень серьёзности
+enum SeverityLevel {
+    SEVERITY_UNSPECIFIED = 0;
+    INFO = 1;        // Информационное событие
+    WARNING = 2;     // Подозрение
+    SUSPICIOUS = 3;  // Требует внимания проктора
+    CRITICAL = 4;    // Явное нарушение
+}
+
+// Детали переключения вкладки
+message TabSwitchDetails {
+    int32 switch_count = 1;           // Счётчик переключений за сессию
+    int32 duration_ms = 2;            // Длительность отсутствия фокуса
+    string switched_to_app = 3;       // Название приложения/вкладки
+}
+
+// Детали обнаружения приложений
+message AppSwitchDetails {
+    string app_name = 1;               // Название приложения
+    string app_bundle_id = 2;          // Идентификатор приложения
+    bool is_blocked = 3;               // Находится ли в чёрном списке
+    int32 duration_ms = 4;             // Длительность работы приложения
+}
+
+// Системные нарушения
+message SystemViolationDetails {
+    string violation_type = 1;         // Виртуальная машина, захват экрана и прочее
+    string evidence = 2;               // Детали обнаружения
+    bool is_deterministic = 3;         // Это подтвержденный факт или подозрение
+}
+
+// Сетевые проблемы
+message NetworkIssueDetails {
+    int32 lost_packets_percent = 1;    // Процент потерянных пакетов
+    int32 latency_ms = 2;              // Текущая задержка
+    int32 reconnects_count = 3;        // Количество переподключений
+}
+
+// Кастомное событие (для расширения фиксируемых событий)
+message CustomEventDetails {
+    string custom_type = 1;             // Произвольный тип события
+    string payload_json = 2;            // JSON с произвольными данными
+}
+</code></pre>
+<h2 id="4-proccessed-proctoring-event"><a class="header" href="#4-proccessed-proctoring-event">4. Proccessed Proctoring Event</a></h2>
+<p>Очередь Proccessed Proctoring Event предназначена для накопления событий прокторинга, зафиксированных и подтвержденных проктором</p>
+<h3 id="общая-информация-о-событииэндпоинте-3"><a class="header" href="#общая-информация-о-событииэндпоинте-3">Общая информация о событии/эндпоинте</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Параметр</th><th>Значение</th></tr>
+</thead>
+<tbody>
+<tr><td>Тип взаимодействия</td><td>очередь (Kafka)</td></tr>
+<tr><td>Название топика</td><td>proctoring.processed.events.v1</td></tr>
+<tr><td>Producer</td><td>Anticheat Handler (Python)</td></tr>
+<tr><td>Consumer</td><td>1. Archive Manager (Python)<br>2. Proctoring API (Python)</td></tr>
+<tr><td>Гарантия доставки</td><td>at-least-once</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="protobuf-схема-с-описанием-полей-3"><a class="header" href="#protobuf-схема-с-описанием-полей-3">Protobuf-схема с описанием полей</a></h3>
+<pre><code>syntax = "proto3";
+
+package proctoring.processed.events.v1;
+
+option go_package = "proctoring/processed/events/v1;eventsv1";
+
+// Корневое сообщение для обработанных событий
+message ProcessedProctoringEvent {
+    // Уникальный идентификатор события
+    string event_id = 1;
+    
+    // Идентификатор экзаменационной сессии
+    string session_id = 2;
+    
+    // Решение проктора
+    ProctorDecision decision = 3;
+    
+    // Данные о нарушении (при наличии)
+    ViolationInfo violation = 4;
+    
+    // Временные метки
+    int64 created_at_unix_ms = 5;      // когда создано на сервере
+    int64 expires_at_unix_ms = 6;      // когда уведомление теряет актуальность
+    
+    // Контрольная сумма
+    string event_hash = 9;
+}
+
+// Решение проктора
+message ProctorDecision {
+    string decision_id = 1;             // Уникальный ID решения
+    string proctor_id = 2;              // ID проктора, принявшего решение
+    DecisionType type = 3;              // Тип решения
+    string comment = 4;                 // Комментарий проктора
+    int64 decided_at_unix_ms = 5;       // Время принятия решения
+}
+
+enum DecisionType {
+    DECISION_UNSPECIFIED = 0;
+    WARNING = 1;                       // Вынести предупреждение
+    VIOLATION_CONFIRM = 2;             // Подтвердить нарушение
+    VIOLATION_REJECT = 3;              // Отклонить нарушение (ложное срабатывание)
+    EXAM_TERMINATE = 4;                // Прервать экзамен
+    ESCALATE_MANUAL = 5;               // Требуется ручная проверка
+}
+
+// Информация о нарушении
+message ViolationInfo {
+    string original_event_id = 1;       // ID события
+    ViolationType type = 2;             // Тип нарушения
+    string description = 3;             // Описание
+    int64 detected_at_unix_ms = 4;      // Когда произошло
+    int32 severity_score = 5;           // Степень серьезности
+    bool is_automatic = 6;              // Автоматическое обнаружение или ручное
+}
+
+enum ViolationType {
+    VIOLATION_UNSPECIFIED = 0;
+    TAB_SWITCH_EXCESS = 1;              // Превышение переключений вкладок
+    MULTIPLE_FACES = 2;                 // Несколько лиц в кадре
+    NO_FACE_LONG = 3;                   // Долгое отсутствие лица
+    GAZE_ANGLE_EXCESS = 4;              // Частое отведение взгляда
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../arch/adr3.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../risks/risks.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../arch/adr3.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../risks/risks.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-abc7f01d.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../mermaid-eefea253.min.js"></script>
+        <script src="../mermaid-init-ccf746f1.js"></script>
+
+
+
+    </div>
+    </body>
+</html>

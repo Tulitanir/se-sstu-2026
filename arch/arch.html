@@ -36,10 +36,10 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-29ac313f.js";
+            window.path_to_searchindex_js = "../searchindex-3c734a19.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-56027f3d.js"></script>
+        <script src="../toc-f190417b.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -208,6 +208,7 @@
 <li>Proctoring API отправляет сообщения для студента в Desktop App Websockets соединение, полученные от Proccessed Proctoring Events</li>
 <li>Proctoting API принимает запрос на публикацию события действия пользователя в системе, и помещает его в Raw User System Events</li>
 <li>Settings Handler получает сообщения из очереди Settings и вносит изменения в хранилище актуальных настроек</li>
+<li>Settings Handler отправляет сообщения в очереди Response для подтверждения применения настроек</li>
 <li>Proctoring API принимает запрос о получении локальных записей (в случае недоступности ранее), и делегирует задачу сохранения Archive Manager’у</li>
 </ol>
 <h4 id="ответственные"><a class="header" href="#ответственные">Ответственные</a></h4>
@@ -231,6 +232,7 @@
 <li>Auth Manager хранит информацию об активных сессиях в Redis Cache.</li>
 <li>Policy Manager ведет историю настроек прокторинга в Proctoring Settings Database</li>
 <li>Policy Manager публикует события об изменении настроект прокторинга в очередь Settings</li>
+<li>Policy Manager получает сообщения об изменении настроек сервером прокторинга из очереди Response</li>
 <li>Conflict Resolution Manager использует историю настроек прокторинга из Proctoring Settings Database для сопоставления с медиасобытиями в случае оффлайн-прокторинга</li>
 <li>Conflict Resolution Manager использует медиаматериалы, запрашивая из российского облачного хранилища</li>
 </ol>
