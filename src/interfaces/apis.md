@@ -4,6 +4,8 @@
 
 Предназначен для работы с поступающими HTTP-запросами в сервер Прокторинга для работы с медиасессиями и событиями прокторинга и античита
 
+*Страница с swagger: <https://tulitanir.github.io/se-sstu-2026/swagger/proctoring-api.html>*
+
 <iframe src="../swagger/proctoring-api.html" width="100%" height="1000px" style="border:0;" allowfullscreen="allowfullscreen"></iframe> 
 
 ## 2. WebSockets часть API для Procoting Server
