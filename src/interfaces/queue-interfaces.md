@@ -1,4 +1,4 @@
-# Интерфейсы
+# Внутренние Интерфейсы
 
 Представлены информация о событии, типе взаимодействия и схемы для очередей в проектируемой системе:
 1. Settings
@@ -245,20 +245,17 @@ message AnticheatEvent {
     // Идентификатор экзаменационной сессии (связь с прокторинг-сессией)
     string session_id = 2;
     
-    // Идентификатор студента (из SSO)
-    string student_id = 3;
-    
     // Тип события
-    EventType event_type = 4;
+    EventType event_type = 3;
     
     // Уровень серьёзности
-    SeverityLevel severity = 5;
+    SeverityLevel severity = 4;
     
     // Время фиксации события
-    int64 detected_at_unix_ms = 6;
+    int64 detected_at_unix_ms = 5;
     
-    // Время относительно начала экзамена (в миллисекундах)
-    int64 offset_from_start_ms = 7;
+    // Время относительно начала экзамена
+    int64 offset_from_start_ms = 6;
     
     // Метаданные события
     oneof details {
@@ -380,7 +377,7 @@ message ProcessedProctoringEvent {
     // Решение проктора
     ProctorDecision decision = 3;
     
-    // Данные о нарушении (при наличии)
+    // Данные о нарушении
     ViolationInfo violation = 4;
     
     // Временные метки
