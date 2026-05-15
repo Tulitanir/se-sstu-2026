@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>4.2.1. Обоснование архитектурных решений - 1 - se-sstu-2026</title>
+        <title>5.2. Внешние Интерфейсы - se-sstu-2026</title>
 
 
         <!-- Custom HTML head -->
@@ -175,77 +175,331 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h2 id="adr-1-выбор-типа-клиента-для-прохождения-экзамена-студентами-desktop-приложение-vs-web-приложение"><a class="header" href="#adr-1-выбор-типа-клиента-для-прохождения-экзамена-студентами-desktop-приложение-vs-web-приложение">ADR-1. Выбор типа клиента для прохождения экзамена студентами (Desktop-приложение vs Web-приложение)</a></h2>
-<h3 id="контекст"><a class="header" href="#контекст">Контекст</a></h3>
-<p>Платформа онлайн‑прокторинга должна обеспечить проведение дистанционных экзаменов с фиксацией видео с камеры, микрофона и экрана студента, работой античита, офлайн‑режимом при потере соединения и высокой надёжностью сохранения результатов.</p>
-<p>Ключевые требования, влияющие на выбор типа клиента:</p>
+                        <h1 id="внешние-интерфейсы"><a class="header" href="#внешние-интерфейсы">Внешние Интерфейсы</a></h1>
+<h2 id="1-http-часть-api-для-procoting-server"><a class="header" href="#1-http-часть-api-для-procoting-server">1. HTTP часть API для Procoting Server</a></h2>
+<p>Предназначен для работы с поступающими HTTP-запросами в сервер Прокторинга для работы с медиасессиями и событиями прокторинга и античита</p>
+<iframe src="swagger/proctoring-api.html" width="100%" height="1500px" style="border:0;" allowfullscreen="allowfullscreen"></iframe> 
+<h2 id="2-websockets-часть-api-для-procoting-server"><a class="header" href="#2-websockets-часть-api-для-procoting-server">2. WebSockets часть API для Procoting Server</a></h2>
+<p>Предназначен преимущественно для событий для системы прокторинга. API позволяет клиентам подписываться на события античита и получать обработанные события прокторинга в реальном времени.</p>
+<h3 id="основной-маршрут-v1ws"><a class="header" href="#основной-маршрут-v1ws">Основной маршрут: <code>/v1/ws</code></a></h3>
+<h3 id="каналы-событий"><a class="header" href="#каналы-событий">Каналы событий</a></h3>
+<h4 id="1-канал-событий-античита"><a class="header" href="#1-канал-событий-античита">1. Канал событий античита</a></h4>
 <ul>
-<li><strong>SR‑SYS‑11 и 12</strong>: запрос и обязательное наличие доступа к камере и микрофону перед стартом экзамена</li>
-<li><strong>SR‑SYS‑17</strong>: захват видео с камеры, аудио с микрофона и экрана пользователя</li>
-<li><strong>SR‑SYS‑19 и 20</strong>: работа в оффлайн‑режиме при потере соединения, локальное сохранение ответов и медиа, переключение на локальную запись при недоступности SFU</li>
-<li><strong>NFR‑5</strong>: локальное сохранение ответов за &lt; 2 с, синхронизация после восстановления соединения</li>
-<li><strong>SR‑SH‑3</strong>: гарантия сохранения результатов даже при сбоях для студента</li>
-<li><strong>SR‑SH‑4</strong>: прозрачность прокторинга и процедуры проведения экзамена</li>
+<li>Название: <code>anticheat.events</code></li>
+<li>Описание: Канал для получения событий, связанных с подозрительной активностью студента во время экзамена.</li>
+<li>JSON-cхема сообщения:</li>
 </ul>
-<p>Особое значение имеет <strong>захват экрана</strong> - в веб‑технологиях он ограничен политиками браузеров и не всегда доступен без постоянного подтверждения пользователем.</p>
-<hr>
-<h3 id="рассматриваемые-варианты"><a class="header" href="#рассматриваемые-варианты">Рассматриваемые варианты</a></h3>
-<ol>
-<li>Web‑приложение</li>
-<li>Desktop‑приложение</li>
-</ol>
-<hr>
-<h3 id="решение"><a class="header" href="#решение">Решение</a></h3>
-<p>Клиент для студентов будет выполнен в виде <strong>desktop‑приложения</strong></p>
-<hr>
-<h3 id="обоснование"><a class="header" href="#обоснование">Обоснование</a></h3>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Критерий</th><th>Web‑приложение</th><th>Desktop‑приложение</th></tr>
-</thead>
-<tbody>
-<tr><td>Захват экрана</td><td>Требуется повторное разрешение каждый раз, ограничения CORS, возможны блокировки расширениями. Нестабильно для длительных экзаменов.</td><td>Полный, контролируемый захват экрана без вмешательства браузера</td></tr>
-<tr><td>Работа без интернета</td><td>Offline‑режим ограничен Service Workers, нет гарантии сохранения медиапотоков. Запись видео/экрана офлайн практически невозможна.</td><td>Полноценная локальная запись видео, экрана и аудио, буферизация ответов, синхронизация после восстановления</td></tr>
-<tr><td>Доступ к устройствам (камера/микрофон) без переспрашивания</td><td>Браузер может запрашивать разрешение повторно. Политики браузеров меняются.</td><td>Один раз при старте - приложение контролирует доступ полностью</td></tr>
-<tr><td>Надёжность при разрывах</td><td>Потеря ответов и медиа выше из‑за ограничений браузера.</td><td>Локальное хранилище позволяет достичь потери финальных результатов &lt; 0.1%</td></tr>
-<tr><td>Обход ограничений студентом</td><td>Уязвим к расширениям, DevTools, подмене скриптов</td><td>Требуется глубокий анализ уязвимостей ОС или самого приложения</td></tr>
-<tr><td>Требование к установке</td><td>Не требуется, нужен только веб-браузер</td><td>Требуется установка на ПК</td></tr>
-<tr><td>Кроссплатформенность</td><td>Обеспечивается</td><td>Возможна, но дороже в реализации</td></tr>
-</tbody>
-</table>
-</div>
-<h4 id="ключевые-факторы-в-пользу-desktop"><a class="header" href="#ключевые-факторы-в-пользу-desktop">Ключевые факторы в пользу desktop:</a></h4>
-<ol>
-<li>Захват экрана - обязательное требование (SR‑SYS‑17). В web захват экрана ненадёжен для длительных экзаменов и требует постоянного разрешения.</li>
-<li>Оффлайн‑режим с записью медиа - в браузере технически невозможно гарантировать сохранность видеопотока экрана при потере соединения.</li>
-<li>Стабильность прокторинг - исключение влияния браузерных политик, обновлений браузера, расширений пользователя.</li>
-</ol>
-<hr>
-<h3 id="последствия"><a class="header" href="#последствия">Последствия</a></h3>
-<h4 id="позитивные"><a class="header" href="#позитивные">Позитивные</a></h4>
+<pre><code>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/anticheat-event-v1.json",
+  "title": "AnticheatEvent",
+  "description": "Событие античита, фиксирующее нарушения и подозрительные действия пользователя",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Уникальный идентификатор события"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Идентификатор экзаменационной сессии"
+    },
+    "event_type": {
+      "type": "integer",
+      "description": "Тип события",
+      "enum": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 99],
+      "enumNames": [
+        "EVENT_TYPE_UNSPECIFIED",
+        "TAB_SWITCH",
+        "WINDOW_BLUR",
+        "SCREEN_CAPTURE_DETECTED",
+        "VM_DETECTED",
+        "DEBUGGER_DETECTED",
+        "RAPID_TYPING",
+        "IDLE_TIMEOUT",
+        "CONNECTION_LOST",
+        "CONNECTION_RESTORED",
+        "HIGH_LATENCY",
+        "SUSPICIOUS_BEHAVIOR",
+        "VIOLATION_CONFIRMED",
+        "CUSTOM"
+      ]
+    },
+    "severity": {
+      "type": "integer",
+      "description": "Уровень серьёзности",
+      "enum": [0, 1, 2, 3, 4],
+      "enumNames": [
+        "SEVERITY_UNSPECIFIED",
+        "INFO",
+        "WARNING",
+        "SUSPICIOUS",
+        "CRITICAL"
+      ]
+    },
+    "detected_at_unix_ms": {
+      "type": "integer",
+      "description": "Время фиксации события в миллисекундах (Unix)",
+      "minimum": 0
+    },
+    "offset_from_start_ms": {
+      "type": "integer",
+      "description": "Время относительно начала экзамена в миллисекундах",
+      "minimum": 0
+    },
+    "tab_switch": {
+      "type": "object",
+      "description": "Детали переключения вкладки",
+      "properties": {
+        "switch_count": {
+          "type": "integer",
+          "description": "Счётчик переключений за сессию",
+          "minimum": 0
+        },
+        "duration_ms": {
+          "type": "integer",
+          "description": "Длительность отсутствия фокуса в миллисекундах",
+          "minimum": 0
+        },
+        "switched_to_app": {
+          "type": "string",
+          "description": "Название приложения/вкладки"
+        }
+      },
+      "additionalProperties": false
+    },
+    "app_switch": {
+      "type": "object",
+      "description": "Детали обнаружения приложений",
+      "properties": {
+        "app_name": {
+          "type": "string",
+          "description": "Название приложения"
+        },
+        "app_bundle_id": {
+          "type": "string",
+          "description": "Идентификатор приложения"
+        },
+        "is_blocked": {
+          "type": "boolean",
+          "description": "Находится ли в чёрном списке"
+        },
+        "duration_ms": {
+          "type": "integer",
+          "description": "Длительность работы приложения в миллисекундах",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "system_violation": {
+      "type": "object",
+      "description": "Системные нарушения",
+      "properties": {
+        "violation_type": {
+          "type": "string",
+          "description": "Тип подозрения/нарушения: Виртуальная машина, захват экрана и прочее"
+        },
+        "evidence": {
+          "type": "string",
+          "description": "Детали/подтверждения обнаружения"
+        },
+        "is_deterministic": {
+          "type": "boolean",
+          "description": "Подтвержденный факт или подозрение?"
+        }
+      },
+      "additionalProperties": false
+    },
+    "network_issue": {
+      "type": "object",
+      "description": "Сетевые проблемы",
+      "properties": {
+        "lost_packets_percent": {
+          "type": "integer",
+          "description": "Процент потерянных пакетов",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "latency_ms": {
+          "type": "integer",
+          "description": "Текущая задержка в миллисекундах",
+          "minimum": 0
+        },
+        "reconnects_count": {
+          "type": "integer",
+          "description": "Количество переподключений",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "custom_event": {
+      "type": "object",
+      "description": "Кастомное событие",
+      "properties": {
+        "custom_type": {
+          "type": "string",
+          "description": "Произвольный тип события"
+        },
+        "payload_json": {
+          "type": "string",
+          "description": "JSON с произвольными данными"
+        }
+      },
+      "additionalProperties": false
+    },
+    "event_hash": {
+      "type": "string",
+      "description": "Контрольная сумма события"
+    }
+  },
+  "required": ["event_id", "session_id", "event_type", "severity", "detected_at_unix_ms", "event_hash"],
+  "allOf": [
+    {
+      "oneOf": [
+        { "required": ["tab_switch"] },
+        { "required": ["app_switch"] },
+        { "required": ["system_violation"] },
+        { "required": ["network_issue"] },
+        { "required": ["custom_event"] }
+      ]
+    }
+  ],
+  "additionalProperties": false
+}
+</code></pre>
+<h3 id="2-канал-обработанных-событий-прокторинга"><a class="header" href="#2-канал-обработанных-событий-прокторинга">2. Канал обработанных событий прокторинга</a></h3>
 <ul>
-<li>Реализуем полный оффлайн‑режим с записью экрана, камеры, микрофона</li>
-<li>Обеспечиваются метрики NFR‑5</li>
-<li>Снижаем риск обхода античита через DevTools и браузерные расширения</li>
-<li>Увеличиваем предсказуемость работы приложения для студента (один интерфейс, не зависит от браузера)</li>
+<li>Название: <code>processed.events</code></li>
+<li>Описание: Канал для получения событий прокторинга после их обработки проктором.</li>
+<li>JSON-cхема сообщения:</li>
 </ul>
-<h4 id="негативные"><a class="header" href="#негативные">Негативные</a></h4>
-<ul>
-<li>Необходима процедура установки приложения на компьютер студента</li>
-<li>Требуется система автообновлений</li>
-<li>Выше затраты на разработку и поддержку под разные ОС</li>
-</ul>
+<pre><code>{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/processed-proctoring-event-v1.json",
+  "title": "ProcessedProctoringEvent",
+  "description": "Обработанное событие прокторинга, зафиксированное и подтверждённое проктором",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Уникальный идентификатор события"
+    },
+    "session_id": {
+      "type": "string",
+      "description": "Идентификатор экзаменационной сессии"
+    },
+    "decision": {
+      "type": "object",
+      "description": "Решение проктора",
+      "properties": {
+        "decision_id": {
+          "type": "string",
+          "description": "Уникальный ID решения"
+        },
+        "proctor_id": {
+          "type": "string",
+          "description": "ID проктора, принявшего решение"
+        },
+        "type": {
+          "type": "integer",
+          "description": "Тип решения",
+          "enum": [0, 1, 2, 3, 4, 5],
+          "enumNames": [
+            "DECISION_UNSPECIFIED",
+            "WARNING",
+            "VIOLATION_CONFIRM",
+            "VIOLATION_REJECT",
+            "EXAM_TERMINATE",
+            "ESCALATE_MANUAL"
+          ]
+        },
+        "comment": {
+          "type": "string",
+          "description": "Комментарий проктора"
+        },
+        "decided_at_unix_ms": {
+          "type": "integer",
+          "description": "Время принятия решения в миллисекундах (Unix)",
+          "minimum": 0
+        }
+      },
+      "required": ["decision_id", "proctor_id", "type", "decided_at_unix_ms"],
+      "additionalProperties": false
+    },
+    "violation": {
+      "type": "object",
+      "description": "Данные о нарушении",
+      "properties": {
+        "original_event_id": {
+          "type": "string",
+          "description": "ID исходного события"
+        },
+        "type": {
+          "type": "integer",
+          "description": "Тип нарушения",
+          "enum": [0, 1, 2, 3, 4],
+          "enumNames": [
+            "VIOLATION_UNSPECIFIED",
+            "TAB_SWITCH_EXCESS",
+            "MULTIPLE_FACES",
+            "NO_FACE_LONG",
+            "GAZE_ANGLE_EXCESS"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "description": "Описание нарушения"
+        },
+        "detected_at_unix_ms": {
+          "type": "integer",
+          "description": "Когда произошло нарушение в миллисекундах (Unix)",
+          "minimum": 0
+        },
+        "severity_score": {
+          "type": "integer",
+          "description": "Степень серьёзности",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "is_automatic": {
+          "type": "boolean",
+          "description": "Автоматическое обнаружение или ручное"
+        }
+      },
+      "required": ["original_event_id", "type", "detected_at_unix_ms"],
+      "additionalProperties": false
+    },
+    "created_at_unix_ms": {
+      "type": "integer",
+      "description": "Время создания события на сервере в миллисекундах (Unix)",
+      "minimum": 0
+    },
+    "expires_at_unix_ms": {
+      "type": "integer",
+      "description": "Время, когда уведомление теряет актуальность, в миллисекундах (Unix)",
+      "minimum": 0
+    },
+    "event_hash": {
+      "type": "string",
+      "description": "Контрольная сумма события"
+    }
+  },
+  "required": ["event_id", "session_id", "decision", "violation", "created_at_unix_ms", "expires_at_unix_ms", "event_hash"],
+  "additionalProperties": false
+}
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../arch/arch.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../interfaces/queue-interfaces.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../arch/adr2.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../risks/risks.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -255,11 +509,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../arch/arch.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../interfaces/queue-interfaces.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../arch/adr2.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../risks/risks.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

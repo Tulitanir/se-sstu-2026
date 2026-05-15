@@ -1,0 +1,291 @@
+openapi: 3.0.3
+info:
+  title: Proctoring API
+  version: 1.0.0
+
+paths:
+  /media-sessions:
+    post:
+      summary: Создать медиасессию
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - student_id
+                - exam_id
+              properties:
+                student_id:
+                  type: string
+                  description: ID студента из SSO
+                exam_id:
+                  type: string
+                  description: ID экзамена
+                settings:
+                  type: object
+                  properties:
+                    record_video:
+                      type: boolean
+                      default: true
+                    screenshot_interval_sec:
+                      type: integer
+                      minimum: 1
+                      maximum: 300
+                      default: 10
+                    audio_enabled:
+                      type: boolean
+                      default: true
+      responses:
+        '200':
+          description: Сессия создана
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaSession'
+
+    get:
+      summary: Список медиасессий
+      parameters:
+        - name: student_id
+          in: query
+          schema:
+            type: string
+          description: Фильтр по студенту
+        - name: exam_id
+          in: query
+          schema:
+            type: string
+          description: Фильтр по экзамену
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [active, paused, completed, failed]
+          description: Статус сессии
+        - name: from_date
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Начало периода
+        - name: to_date
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Конец периода
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MediaSession'
+                  pagination:
+                    type: object
+                    properties:
+                      limit:
+                        type: integer
+                      offset:
+                        type: integer
+                      total:
+                        type: integer
+
+  /media-sessions/{session_id}:
+    get:
+      summary: Получить медиасессию по ID
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: UUID сессии
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaSession'
+        '404':
+          description: Сессия не найдена
+
+    put:
+      summary: Обновить статус сессии
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [active, paused]
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MediaSession'
+        '404':
+          description: Сессия не найдена
+
+    delete:
+      summary: Завершить медиасессию
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Сессия завершена
+        '404':
+          description: Сессия не найдена
+
+  /anticheat/events:
+    post:
+      summary: Отправить событие античита
+      description: Проксирует в Kafka topic proctoring.anticheat.events.v1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnticheatEvent'
+      responses:
+        '200':
+          description: Принято в обработку
+        '400':
+          description: Некорректный запрос
+
+  /processed/events:
+    post:
+      summary: Отправить проверенное событие
+      description: Проксирует в Kafka topic proctoring.processed.events.v1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProcessedProctoringEvent'
+      responses:
+        '200':
+          description: Принято в обработку
+        '400':
+          description: Некорректный запрос
+
+components:
+  schemas:
+    MediaSession:
+      type: object
+      properties:
+        session_id:
+          type: string
+        student_id:
+          type: string
+        exam_id:
+          type: string
+        status:
+          type: string
+          enum: [active, paused, completed, failed]
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+          nullable: true
+        stream_url:
+          type: string
+
+    AnticheatEvent:
+      type: object
+      properties:
+        event_id:
+          type: string
+        session_id:
+          type: string
+        event_type:
+          type: string
+        event_data_json:
+          type: string
+          format: json
+        severity:
+          type: string
+          enum:
+            - INFO
+            - WARNING
+            - SUSPICIOUS
+            - CRITICAL
+        detected_at_unix_ms:
+          type: integer
+          format: int64
+        offset_from_start_ms:
+          type: integer
+          format: int64
+
+    ProcessedProctoringEvent:
+      type: object
+      properties:
+        event_id:
+          type: string
+        session_id:
+          type: string
+        decision:
+          type: object
+          required:
+            - decision_id
+            - proctor_id
+            - type
+            - decided_at_unix_ms
+          properties:
+            decision_id:
+              type: string
+            proctor_id:
+              type: string
+            type:
+              type: string
+              enum:
+                - WARNING
+                - VIOLATION_CONFIRM
+                - VIOLATION_REJECT
+                - EXAM_TERMINATE
+                - ESCALATE_MANUAL
+            comment:
+              type: string
+            decided_at_unix_ms:
+              type: integer
+              format: int64
