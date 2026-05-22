@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-aa66e8fd.js";
+            window.path_to_searchindex_js = "../searchindex-908b2fed.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-8a1169dd.js"></script>
@@ -175,9 +175,9 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="внешние-интерфейсы"><a class="header" href="#внешние-интерфейсы">Внешние Интерфейсы</a></h1>
+                        <h1 id="52-внешние-интерфейсы"><a class="header" href="#52-внешние-интерфейсы">5.2. Внешние Интерфейсы</a></h1>
 <h2 id="1-http-часть-api-для-procoting-server"><a class="header" href="#1-http-часть-api-для-procoting-server">1. HTTP часть API для Procoting Server</a></h2>
-<p>Предназначен для работы с поступающими HTTP-запросами в сервер Прокторинга для работы с медиасессиями и событиями прокторинга и античита</p>
+<p>Предназначен для работы с поступающими HTTP-запросами в сервер Прокторинга для работы с медиа и событиями прокторинга и античита</p>
 <p><em>Страница с swagger (если не работает iframe ниже): <a href="https://tulitanir.github.io/se-sstu-2026/swagger/proctoring-api.html">https://tulitanir.github.io/se-sstu-2026/swagger/proctoring-api.html</a></em></p>
 <iframe src="../swagger/proctoring-api.html" width="100%" height="1000px" style="border:0;" allowfullscreen="allowfullscreen"></iframe> 
 <h2 id="2-websockets-часть-api-для-procoting-server"><a class="header" href="#2-websockets-часть-api-для-procoting-server">2. WebSockets часть API для Procoting Server</a></h2>
@@ -370,17 +370,17 @@
   "additionalProperties": false
 }
 </code></pre>
-<h3 id="2-канал-обработанных-событий-прокторинга"><a class="header" href="#2-канал-обработанных-событий-прокторинга">2. Канал обработанных событий прокторинга</a></h3>
+<h3 id="2-канал-обработанных-событий-анализа-медиапотоков"><a class="header" href="#2-канал-обработанных-событий-анализа-медиапотоков">2. Канал обработанных событий анализа медиапотоков</a></h3>
 <ul>
 <li>Название: <code>processed.events</code></li>
-<li>Описание: Канал для получения событий прокторинга после их обработки проктором.</li>
+<li>Описание: Канал для получения событий анализа медиапотоков после их обработки проктором.</li>
 <li>JSON-cхема сообщения:</li>
 </ul>
 <pre><code>{
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://example.com/schemas/processed-proctoring-event-v1.json",
-  "title": "ProcessedProctoringEvent",
-  "description": "Обработанное событие прокторинга, зафиксированное и подтверждённое проктором",
+  "title": "ProcessedStreamEvent",
+  "description": "Обработанное событие, зафиксированное и подтверждённое проктором",
   "type": "object",
   "properties": {
     "event_id": {
@@ -412,8 +412,8 @@
             "WARNING",
             "VIOLATION_CONFIRM",
             "VIOLATION_REJECT",
-            "EXAM_TERMINATE",
-            "ESCALATE_MANUAL"
+            "EXAM_TERMINATED",
+            "REVIEW_REQUIRED"
           ]
         },
         "comment": {
