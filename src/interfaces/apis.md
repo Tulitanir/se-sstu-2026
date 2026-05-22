@@ -1,8 +1,8 @@
-# Внешние Интерфейсы
+# 5.2. Внешние Интерфейсы
 
 ## 1. HTTP часть API для Procoting Server
 
-Предназначен для работы с поступающими HTTP-запросами в сервер Прокторинга для работы с медиасессиями и событиями прокторинга и античита
+Предназначен для работы с поступающими HTTP-запросами в сервер Прокторинга для работы с медиа и событиями прокторинга и античита
 
 *Страница с swagger (если не работает iframe ниже): <https://tulitanir.github.io/se-sstu-2026/swagger/proctoring-api.html>*
 
@@ -202,16 +202,16 @@
 }
 ```
 
-### 2. Канал обработанных событий прокторинга
+### 2. Канал обработанных событий анализа медиапотоков
 - Название: `processed.events`
-- Описание: Канал для получения событий прокторинга после их обработки проктором.
+- Описание: Канал для получения событий анализа медиапотоков после их обработки проктором.
 - JSON-cхема сообщения:
 ```
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://example.com/schemas/processed-proctoring-event-v1.json",
-  "title": "ProcessedProctoringEvent",
-  "description": "Обработанное событие прокторинга, зафиксированное и подтверждённое проктором",
+  "title": "ProcessedStreamEvent",
+  "description": "Обработанное событие, зафиксированное и подтверждённое проктором",
   "type": "object",
   "properties": {
     "event_id": {
@@ -243,8 +243,8 @@
             "WARNING",
             "VIOLATION_CONFIRM",
             "VIOLATION_REJECT",
-            "EXAM_TERMINATE",
-            "ESCALATE_MANUAL"
+            "EXAM_TERMINATED",
+            "REVIEW_REQUIRED"
           ]
         },
         "comment": {

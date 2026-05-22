@@ -1,4 +1,4 @@
-# Внутренние Интерфейсы
+# 5.1. Внутренние Интерфейсы
 
 Представлены информация о событии, типе взаимодействия и схемы для очередей в проектируемой системе:
 1. Settings
@@ -58,35 +58,41 @@ enum OperationType {
 
 // Основные настройки прокторинга
 message ProctoringRules {
+  
+  // Параметры античита
+  AnticheatConfig anticheat = 1;
+
+  // Параметры анализатора медиапотока
+  StreamConfig streamconfig = 2;
+}
+
+message StreamConfig {
+    // Чувствительность детектора лиц (0.0 - 1.0)
+    float face_detection_sensitivity = 1;
+
+    // Чувствительность детектора на второе лицо в кадре (0.0 - 1.0)
+    float multi_face_sensitivity = 2;
+    
+    // Чувствительность детектора на отсутствие лица (0.0 - 1.0)
+    float no_face_sensitivity = 3;
+    
+    // Разрешённое отклонение взгляда в градусах
+    int32 gaze_angle_threshold_deg = 4;
+    
+    // Включена ли проверка посторонних приложений
+    bool check_unauthorized_apps = 5;
+}
+
+// Конфигурация античита
+message AnticheatConfig {
   // Максимальное допустимое количество переключений вкладок
   int32 max_tab_switches = 1;
   
   // Максимальное количество подозрительных событий до фиксации нарушения
   int32 max_suspicious_events = 2;
-  
-  // Параметры античита
-  AnticheatConfig anticheat = 3;
-  
-  // Включённые типы проверок в виде битоввой маски
-  int32 enabled_checks_mask = 4;
-}
 
-// Конфигурация античита
-message AnticheatConfig {
-  // Чувствительность детектора лиц (0.0 - 1.0)
-  float face_detection_sensitivity = 1;
-  
-  // Чувствительность детектора на второе лицо в кадре (0.0 - 1.0)
-  float multi_face_sensitivity = 2;
-  
-  // Чувствительность детектора на отсутствие лица (0.0 - 1.0)
-  float no_face_sensitivity = 3;
-  
-  // Разрешённое отклонение взгляда в градусах
-  int32 gaze_angle_threshold_deg = 4;
-  
-  // Включена ли проверка посторонних приложений
-  bool check_unauthorized_apps = 5;
+  // Включённые типы проверок в виде битоввой маски
+  int32 enabled_checks_mask = 3;
 }
 
 // Информация для валидации и верификации
@@ -345,7 +351,7 @@ message CustomEventDetails {
 }
 ```
 
-## 4. Proccessed Proctoring Event
+## 4. Proccessed Stream Event
 Очередь Proccessed Proctoring Event предназначена для накопления событий прокторинга, зафиксированных и подтвержденных проктором
 
 ### Общая информация о событии/эндпоинте
@@ -353,21 +359,21 @@ message CustomEventDetails {
 |Параметр            |	Значение                                    |
 |--------------------|----------------------------------------------|
 |Тип взаимодействия  |очередь (Kafka)                               |
-|Название топика     |proctoring.processed.events.v1                |
-|Producer            |Anticheat Handler (Python)                    |
-|Consumer            |1. Archive Manager (Python)<br>2. Proctoring API (Python) |
+|Название топика     |stream.processed.events.v1                |
+|Producer            |Proctoring API (Python)                       |
+|Consumer            |Archive Manager (Python)                      |
 |Гарантия доставки   |at-least-once                                 |
 
 ### Protobuf-схема с описанием полей
 ```
 syntax = "proto3";
 
-package proctoring.processed.events.v1;
+package stream.processed.events.v1;
 
-option go_package = "proctoring/processed/events/v1;eventsv1";
+option go_package = "stream/processed/events/v1;eventsv1";
 
 // Корневое сообщение для обработанных событий
-message ProcessedProctoringEvent {
+message ProcessedStreamEvent {
     // Уникальный идентификатор события
     string event_id = 1;
     
@@ -400,10 +406,10 @@ message ProctorDecision {
 enum DecisionType {
     DECISION_UNSPECIFIED = 0;
     WARNING = 1;                       // Вынести предупреждение
-    VIOLATION_CONFIRM = 2;             // Подтвердить нарушение
-    VIOLATION_REJECT = 3;              // Отклонить нарушение (ложное срабатывание)
-    EXAM_TERMINATE = 4;                // Прервать экзамен
-    ESCALATE_MANUAL = 5;               // Требуется ручная проверка
+    VIOLATION_CONFIRMED = 2;           // Подтвердить нарушение
+    VIOLATION_REJECTED = 3;            // Отклонить нарушение
+    EXAM_TERMINATED = 4;                // Прервать экзамен
+    REVIEW_REQUIRED = 5;               // Требуется ручная проверка
 }
 
 // Информация о нарушении

@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 Edg/146.0.0.0">
   <diagram name="Страница-1" id="Vw6lY-_8B1_iARRC0cGh">
-    <mxGraphModel dx="2107" dy="-1665" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2534" dy="-1441" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -34,7 +34,7 @@
             <mxGeometry height="120" width="240" x="1069" y="4102" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Raw Proctoring Events" c4Type="Container" c4Technology="Apache Kafka" c4Description="События прокторинга отмеченные системой" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-20">
+        <object placeholders="1" c4Name="Raw Stream Events" c4Type="Container" c4Technology="Apache Kafka" c4Description="События анализа медиапотоков отмеченные системой" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-20">
           <mxCell parent="1" style="shape=cylinder3;size=15;direction=south;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=16;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" vertex="1">
             <mxGeometry height="120" width="240" x="669" y="2893" as="geometry" />
           </mxCell>
@@ -44,7 +44,7 @@
             <mxGeometry height="120" width="240" x="790" y="3470" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="SFU-сервер" c4Type="Software System" c4Description="[Ретрансляция видеопотока в реальном времени]" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-34">
+        <object placeholders="1" c4Name="SFU-сервер" c4Type="Software System" c4Description="[Ретрансляция медиапотока в реальном времени]" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;&lt;font color=&quot;#cccccc&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-34">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#8C8496;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#736782;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];fontSize=16;" vertex="1">
             <mxGeometry height="120" width="240" x="-271" y="2420" as="geometry" />
           </mxCell>
@@ -64,7 +64,7 @@
             <mxGeometry height="120" width="240" x="-427" y="3339.5" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Streaming Service" c4Type="Component" c4Technology="Electron" c4Description="Сервис фиксации и пересылки видео, аудио  потоков" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-63">
+        <object placeholders="1" c4Name="Streaming Service" c4Type="Component" c4Technology="Electron" c4Description="Сервис фиксации и пересылки медиапотоков" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-63">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];fontSize=16;" vertex="1">
             <mxGeometry height="120" width="240" x="-427" y="3017" as="geometry" />
           </mxCell>
@@ -93,7 +93,7 @@
             </mxGeometry>
           </mxCell>
         </object>
-        <object placeholders="1" c4Type="Relationship" c4Technology="WebRTC" c4Description="Установить соединение&#xa;Отправить видео поток" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-108">
+        <object placeholders="1" c4Type="Relationship" c4Technology="WebRTC" c4Description="Установить соединение&#xa;Отправить медиапоток" label="&lt;div style=&quot;text-align: left&quot;&gt;&lt;div style=&quot;text-align: center&quot;&gt;&lt;b&gt;%c4Description%&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;text-align: center&quot;&gt;[%c4Technology%]&lt;/div&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-108">
           <mxCell edge="1" parent="1" source="YpQKlrKdbJWu9v9dhD_e-63" style="endArrow=blockThin;html=1;fontSize=16;fontColor=#404040;strokeWidth=1;endFill=1;strokeColor=#828282;elbow=vertical;metaEdit=1;endSize=14;startSize=14;jumpStyle=arc;jumpSize=16;rounded=0;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="YpQKlrKdbJWu9v9dhD_e-34">
             <mxGeometry relative="1" width="240" x="0.8743" y="88" as="geometry">
               <mxPoint x="-83" y="58" as="offset" />
@@ -105,7 +105,7 @@
             </mxGeometry>
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Archive Manager" c4Type="Component" c4Technology="Python" c4Description="Сохранение видео-потока и метаданных о событиях" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-120">
+        <object placeholders="1" c4Name="Archive Manager" c4Type="Component" c4Technology="Python" c4Description="Сохранение медиапотока и метаданных о событиях" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-120">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];fontSize=16;" vertex="1">
             <mxGeometry height="120" width="240" x="509" y="2420" as="geometry" />
           </mxCell>
@@ -174,7 +174,7 @@
             </mxGeometry>
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Stream Heandler" c4Type="Component" c4Technology="Python, PyTorch" c4Description="Обработка видео-потока" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-119">
+        <object placeholders="1" c4Name="Stream Heandler" c4Type="Component" c4Technology="Python, PyTorch" c4Description="Обработка медиапотока" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%: %c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-119">
           <mxCell parent="1" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#63BEF2;fontColor=#ffffff;align=center;arcSize=6;strokeColor=#2086C9;metaEdit=1;resizable=0;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];fontSize=16;" vertex="1">
             <mxGeometry height="120" width="240" x="219" y="2580" as="geometry" />
           </mxCell>
@@ -370,7 +370,7 @@
             </mxGeometry>
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="Proceessed Proctoring Events" c4Type="Container" c4Technology="Apache Kafka" c4Description="Подтвержденные события" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-200">
+        <object placeholders="1" c4Name="Proceessed Stream Events" c4Type="Container" c4Technology="Apache Kafka" c4Description="Подтвержденные события" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-200">
           <mxCell parent="1" style="shape=cylinder3;size=15;direction=south;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=16;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" vertex="1">
             <mxGeometry height="120" width="240" x="929" y="2893" as="geometry" />
           </mxCell>
@@ -422,7 +422,7 @@
             <mxGeometry height="120" width="240" x="99" y="4030" as="geometry" />
           </mxCell>
         </object>
-        <object placeholders="1" c4Name="LocalStorage" c4Type="Container" c4Technology="sqlite" c4Description="Description of storage type container role/responsibility." label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-223">
+        <object placeholders="1" c4Name="LocalStorage" c4Type="Container" c4Technology="sqlite" c4Description="Локальное хранилище" label="&lt;font&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%:&amp;nbsp;%c4Technology%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font&gt;&lt;font color=&quot;#E6E6E6&quot;&gt;%c4Description%&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;" id="YpQKlrKdbJWu9v9dhD_e-223">
           <mxCell parent="1" style="shape=cylinder3;size=15;whiteSpace=wrap;html=1;boundedLbl=1;rounded=0;labelBackgroundColor=none;fillColor=#23A2D9;fontSize=16;fontColor=#ffffff;align=center;strokeColor=#0E7DAD;metaEdit=1;points=[[0.5,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.5,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];resizable=0;" vertex="1">
             <mxGeometry height="120" width="240" x="-777" y="2987" as="geometry" />
           </mxCell>
