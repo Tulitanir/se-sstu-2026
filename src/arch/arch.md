@@ -10,7 +10,7 @@
 
 ### Уровень контейнеров
 
-@drawio{https://github.com/Tulitanir/se-sstu-2026/blob/main/src/drawio/c4-context.drawio}
+@drawio{https://github.com/Tulitanir/se-sstu-2026/blob/main/src/drawio/c4-containers.drawio}
 
 ## Декомпозиция на компоненты
 
