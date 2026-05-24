@@ -2,11 +2,22 @@ openapi: 3.0.3
 info:
   title: Proctoring API
   version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+    description: Production API v1
 
 paths:
   /media-sessions:
     post:
       summary: Создать медиасессию
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный ключ идемпотентности клиента (UUID).
       requestBody:
         required: true
         content:
@@ -39,11 +50,46 @@ paths:
                       default: true
       responses:
         '200':
-          description: Сессия создана
+          description: Сессия создана 
+          headers:
+            X-Idempotent-Replayed:
+              schema:
+                type: boolean
+              description: true, если ответ возвращён по идемпотентности
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediaSession'
+        '400':
+          description: Некорректные параметры запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Необходима аутентификация
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Доступ запрещён
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Слишком много запросов
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Сервер недоступен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
     get:
       summary: Список медиасессий
@@ -110,6 +156,30 @@ paths:
                         type: integer
                       total:
                         type: integer
+        '400':
+          description: Неверные параметры фильтрации
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Необходима аутентификация
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Недостаточно прав для просмотра списка сессий
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Сервер недоступен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
   /media-sessions/{session_id}:
     get:
@@ -128,8 +198,36 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediaSession'
+        '400':
+          description: Некорректный формат session_id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Необходима аутентификация
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Доступ запрещён
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '404':
           description: Сессия не найдена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Сервер недоступен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
     put:
       summary: Обновить статус сессии
@@ -139,27 +237,78 @@ paths:
           required: true
           schema:
             type: string
+        - name: If-Match
+          in: header
+          required: true
+          schema:
+            type: string
+          description: |
+            ETag текущей версии ресурса.
       requestBody:
         required: true
         content:
           application/json:
             schema:
               type: object
+              required:
+                - status
               properties:
                 status:
                   type: string
                   enum: [active, paused]
+                  description: Новый статус сессии
                 reason:
                   type: string
+                  description: Причина изменения статуса
       responses:
         '200':
-          description: OK
+          description: Статус обновлён
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/MediaSession'
+        '400':
+          description: Некорректный статус или тело запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Необходима аутентификация
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Нет прав на изменение статуса этой сессии
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '404':
           description: Сессия не найдена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Некорректный переход статуса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '412':
+          description: If-Match не совпадает (ресурс изменён другим клиентом)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Сервер недоступен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
     delete:
       summary: Завершить медиасессию
@@ -170,15 +319,50 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        '204':
           description: Сессия завершена
+        '400':
+          description: Некорректный ID сессии
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Необходима аутентификация
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Нет прав на завершение этой сессии
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
         '404':
           description: Сессия не найдена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Сервер недоступен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
   /anticheat/events:
     post:
       summary: Отправить событие античита
-      description: Проксирует в Kafka topic proctoring.anticheat.events.v1
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный ключ идемпотентности клиента (UUID).
       requestBody:
         required: true
         content:
@@ -188,13 +372,59 @@ paths:
       responses:
         '200':
           description: Принято в обработку
+          headers:
+            X-Idempotent-Replayed:
+              schema:
+                type: boolean
+              description: true, если событие уже обрабатывалось ранее
         '400':
           description: Некорректный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Необходима аутентификация
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Доступ запрещён
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Указанная session_id не найдена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Превышен лимит отправки событий
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Сервер недоступен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
   /processed/events:
     post:
       summary: Отправить проверенное событие
-      description: Проксирует в Kafka topic proctoring.processed.events.v1
+      parameters:
+        - name: Idempotency-Key
+          in: header
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Уникальный ключ идемпотентности клиента (UUID)
       requestBody:
         required: true
         content:
@@ -204,8 +434,47 @@ paths:
       responses:
         '200':
           description: Принято в обработку
+          headers:
+            X-Idempotent-Replayed:
+              schema:
+                type: boolean
+              description: true, если решение уже обрабатывалось ранее
         '400':
           description: Некорректный запрос
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Необходима аутентификация
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Доступ запрещён
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Исходное событие или сессия не найдены
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Решение для этого event_id уже принято с другими данными
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '502':
+          description: Сервер недоступен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
 components:
   schemas:
@@ -230,12 +499,22 @@ components:
           nullable: true
         stream_url:
           type: string
+        etag:
+          type: string
+          description: ETag ресурса для If-Match 
 
     AnticheatEvent:
       type: object
+      required:
+        - event_id
+        - session_id
+        - event_type
+        - severity
+        - detected_at_unix_ms
       properties:
         event_id:
           type: string
+          description: UUID события
         session_id:
           type: string
         event_type:
@@ -259,6 +538,10 @@ components:
 
     ProcessedProctoringEvent:
       type: object
+      required:
+        - event_id
+        - session_id
+        - decision
       properties:
         event_id:
           type: string
@@ -289,3 +572,27 @@ components:
             decided_at_unix_ms:
               type: integer
               format: int64
+
+    ErrorResponse:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: Уникальный код ошибки
+        message:
+          type: string
+          description: Человекочитаемое описание ошибки
+        details:
+          type: object
+          description: Дополнительная информация об ошибке
+          additionalProperties: true
+          example:
+            field: "student_id"
+            reason: "already has active session"
+        timestamp:
+          type: string
+          format: date-time
+          description: Время возникновения ошибки (UTC)
