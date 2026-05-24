@@ -1,17 +1,5 @@
 # 4. Архитектура системы
 
-## Предыдущие диаграммы
-
-Напомним первые два уровня диаграммы C4 
-
-### Уровень контекста
-
-@drawio{https://github.com/Tulitanir/se-sstu-2026/blob/main/src/drawio/c4-context.drawio}
-
-### Уровень контейнеров
-
-@drawio{https://github.com/Tulitanir/se-sstu-2026/blob/main/src/drawio/c4-containers.drawio}
-
 ## Декомпозиция на компоненты
 
 Для деклмпозиции на компоненты был выбран 3-ий уровень диаграммы С4:
