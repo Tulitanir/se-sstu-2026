@@ -36,7 +36,7 @@
             const path_to_root = "../";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-89572ecf.js";
+            window.path_to_searchindex_js = "../searchindex-469e2709.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="../toc-8a1169dd.js"></script>
@@ -181,14 +181,23 @@
 <p><em>Страница с swagger (если не работает iframe ниже): <a href="https://tulitanir.github.io/se-sstu-2026/swagger/proctoring-api.html">https://tulitanir.github.io/se-sstu-2026/swagger/proctoring-api.html</a></em></p>
 <iframe src="../swagger/proctoring-api.html" width="100%" height="1000px" style="border:0;" allowfullscreen="allowfullscreen"></iframe> 
 <h3 id="описание-маршрутов"><a class="header" href="#описание-маршрутов">Описание маршрутов</a></h3>
-<p>| :— | :— |
-| Назначение | Получить детальную информацию о конкретном медиапотоке |
-| Входные поля | <code>session_id</code> (в пути) |
-| Выходные поля | <code>MediaSession</code>: <code>session_id</code>, <code>student_id</code>, <code>exam_id</code>, <code>status</code>, <code>started_at</code>, <code>ended_at</code>, <code>stream_url</code>, <code>etag</code> |
-| Ошибки | <code>400</code>, <code>401</code>, <code>403</code>, <code>404</code>, <code>502</code> |
-| Версия | <code>v1</code> |
-| Формат | JSON |
-| Обеспечение идемпотентности | Не требуется (GET-метод не изменяет состояние) |</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Endpoint</th><th style="text-align: left">PUT /media-sessions/{session_id}</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left">Назначение</td><td style="text-align: left">Получить детальную информацию о конкретном медиапотоке</td></tr>
+<tr><td style="text-align: left">Входные поля</td><td style="text-align: left"><code>session_id</code> (в пути)</td></tr>
+<tr><td style="text-align: left">Выходные поля</td><td style="text-align: left"><code>MediaSession</code>: <code>session_id</code>, <code>student_id</code>, <code>exam_id</code>, <code>status</code>, <code>started_at</code>, <code>ended_at</code>, <code>stream_url</code>, <code>etag</code></td></tr>
+<tr><td style="text-align: left">Ошибки</td><td style="text-align: left"><code>400</code>, <code>401</code>, <code>403</code>, <code>404</code>, <code>502</code></td></tr>
+<tr><td style="text-align: left">Версия</td><td style="text-align: left"><code>v1</code></td></tr>
+<tr><td style="text-align: left">Формат</td><td style="text-align: left">JSON</td></tr>
+<tr><td style="text-align: left">Обеспечение идемпотентности</td><td style="text-align: left">Не требуется (GET-метод не изменяет состояние)</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -205,6 +214,7 @@
 </tbody>
 </table>
 </div>
+<hr>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -221,6 +231,7 @@
 </tbody>
 </table>
 </div>
+<hr>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -237,6 +248,7 @@
 </tbody>
 </table>
 </div>
+<hr>
 <div class="table-wrapper">
 <table>
 <thead>
@@ -253,6 +265,7 @@
 </tbody>
 </table>
 </div>
+<hr>
 <h2 id="2-websockets-часть-api-для-procoting-server"><a class="header" href="#2-websockets-часть-api-для-procoting-server">2. WebSockets часть API для Procoting Server</a></h2>
 <p>Предназначен преимущественно для событий для системы прокторинга. API позволяет клиентам подписываться на события античита и получать обработанные события прокторинга в реальном времени.</p>
 <h3 id="основной-маршрут-v1ws"><a class="header" href="#основной-маршрут-v1ws">Основной маршрут: <code>/v1/ws</code></a></h3>
