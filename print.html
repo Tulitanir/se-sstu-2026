@@ -37,7 +37,7 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-908b2fed.js";
+            window.path_to_searchindex_js = "searchindex-89572ecf.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-8a1169dd.js"></script>
@@ -969,14 +969,20 @@ SSO недоступен:</p>
 <p><strong>Верификация:</strong><br>Автоматический аудит TLS конфигурации ежемесячно. Выполняется выборка &gt;= 500 соединений. Проводится ежегодный пентест.</p>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="4-архитектура-системы"><a class="header" href="#4-архитектура-системы">4. Архитектура системы</a></h1>
+<h2 id="предыдущие-диаграммы"><a class="header" href="#предыдущие-диаграммы">Предыдущие диаграммы</a></h2>
+<p>Напомним первые два уровня диаграммы C4</p>
+<h3 id="уровень-контекста"><a class="header" href="#уровень-контекста">Уровень контекста</a></h3>
+<iframe class="drawio-viewer" src="https://viewer.diagrams.net/?highlight=0000ff&amp;edit=_blank&amp;layers=1&amp;nav=1&amp;title=diagram&amp;url=https://raw.githubusercontent.com/Tulitanir/se-sstu-2026/main/src/drawio/c4-context.drawio"></iframe>
+<h3 id="уровень-контейнеров"><a class="header" href="#уровень-контейнеров">Уровень контейнеров</a></h3>
+<iframe class="drawio-viewer" src="https://viewer.diagrams.net/?highlight=0000ff&amp;edit=_blank&amp;layers=1&amp;nav=1&amp;title=diagram&amp;url=https://raw.githubusercontent.com/Tulitanir/se-sstu-2026/main/src/drawio/c4-context.drawio"></iframe>
 <h2 id="декомпозиция-на-компоненты"><a class="header" href="#декомпозиция-на-компоненты">Декомпозиция на компоненты</a></h2>
 <p>Для деклмпозиции на компоненты был выбран 3-ий уровень диаграммы С4:</p>
 <iframe class="drawio-viewer" src="https://viewer.diagrams.net/?highlight=0000ff&amp;edit=_blank&amp;layers=1&amp;nav=1&amp;title=diagram&amp;url=https://raw.githubusercontent.com/Tulitanir/se-sstu-2026/main/src/drawio/c4-component.drawio"></iframe>
-<h2 id="описание-компонент-их-взаимодействие"><a class="header" href="#описание-компонент-их-взаимодействие">Описание компонент их взаимодействие</a></h2>
+<h2 id="описание-компонент-их-обязанности-и-взаимодействие"><a class="header" href="#описание-компонент-их-обязанности-и-взаимодействие">Описание компонент, их обязанности и взаимодействие</a></h2>
 <h3 id="1-сервер-прокторинга"><a class="header" href="#1-сервер-прокторинга">1. Сервер Прокторинга</a></h3>
 <h4 id="компоненты"><a class="header" href="#компоненты">Компоненты</a></h4>
 <ol>
-<li>Proctoring  API - API для взаиможейтсвия с сервером</li>
+<li>Proctoring  API - API для взаимодейтсвия с сервером</li>
 <li>Anticheat Handler - Производит обработку событий о действиях экзаменуемых внутри системы путем классификации действий по степени подозрительности или на факт нарушения с учетом актуальных настроек прокторинга</li>
 <li>Stream Handler - Произоводит анализ поступающего видео потока, публикует события для проктора</li>
 <li>Archive Manager - Производит агрегацию полученных материалов (видео, обработанные античитом события, события в медиапотоках)</li>
@@ -1732,6 +1738,79 @@ enum ViolationType {
 <p>Предназначен для работы с поступающими HTTP-запросами в сервер Прокторинга для работы с медиа и событиями прокторинга и античита</p>
 <p><em>Страница с swagger (если не работает iframe ниже): <a href="https://tulitanir.github.io/se-sstu-2026/swagger/proctoring-api.html">https://tulitanir.github.io/se-sstu-2026/swagger/proctoring-api.html</a></em></p>
 <iframe src="../swagger/proctoring-api.html" width="100%" height="1000px" style="border:0;" allowfullscreen="allowfullscreen"></iframe> 
+<h3 id="описание-маршрутов"><a class="header" href="#описание-маршрутов">Описание маршрутов</a></h3>
+<p>| :— | :— |
+| Назначение | Получить детальную информацию о конкретном медиапотоке |
+| Входные поля | <code>session_id</code> (в пути) |
+| Выходные поля | <code>MediaSession</code>: <code>session_id</code>, <code>student_id</code>, <code>exam_id</code>, <code>status</code>, <code>started_at</code>, <code>ended_at</code>, <code>stream_url</code>, <code>etag</code> |
+| Ошибки | <code>400</code>, <code>401</code>, <code>403</code>, <code>404</code>, <code>502</code> |
+| Версия | <code>v1</code> |
+| Формат | JSON |
+| Обеспечение идемпотентности | Не требуется (GET-метод не изменяет состояние) |</p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Endpoint</th><th style="text-align: left">PUT /media-sessions/{session_id}</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left">Назначение</td><td style="text-align: left">Обновить статус существующего медиапотока</td></tr>
+<tr><td style="text-align: left">Входные поля</td><td style="text-align: left"><code>session_id</code> (в пути), <code>status</code>, <code>reason</code></td></tr>
+<tr><td style="text-align: left">Выходные поля</td><td style="text-align: left">Обновлённый <code>MediaSession</code></td></tr>
+<tr><td style="text-align: left">Ошибки</td><td style="text-align: left"><code>400</code>, <code>401</code>, <code>403</code>, <code>404</code>, <code>409</code>, <code>412</code>, <code>502</code></td></tr>
+<tr><td style="text-align: left">Версия</td><td style="text-align: left"><code>v1</code></td></tr>
+<tr><td style="text-align: left">Формат</td><td style="text-align: left">JSON</td></tr>
+<tr><td style="text-align: left">Обеспечение идемпотентности**</td><td style="text-align: left">Клиент передаёт заголовок <code>If-Match: &lt;ETag&gt;</code> для предотвращения конфликтов</td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Endpoint</th><th style="text-align: left">DELETE /media-sessions/{session_id}</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left">Назначение</td><td style="text-align: left">Завершить медиапоток</td></tr>
+<tr><td style="text-align: left">Входные поля</td><td style="text-align: left"><code>session_id</code> (в пути)</td></tr>
+<tr><td style="text-align: left">Выходные поля</td><td style="text-align: left">- (статус <code>204 No Content</code>)</td></tr>
+<tr><td style="text-align: left">Ошибки</td><td style="text-align: left"><code>400</code>, <code>401</code>, <code>403</code>, <code>404</code>, <code>502</code></td></tr>
+<tr><td style="text-align: left">Версия</td><td style="text-align: left"><code>v1</code></td></tr>
+<tr><td style="text-align: left">Формат</td><td style="text-align: left">JSON (для ошибок)</td></tr>
+<tr><td style="text-align: left">Обеспечение идемпотентности</td><td style="text-align: left">Не требуется (DELETE идемпотентен по определению)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Endpoint</th><th style="text-align: left">POST /anticheat/events</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left">Назначение</td><td style="text-align: left">Отправить событие античита</td></tr>
+<tr><td style="text-align: left">Входные поля</td><td style="text-align: left"><code>event_id</code>, <code>session_id</code>, <code>event_type</code>, <code>event_data_json</code>, <code>severity</code>, <code>detected_at_unix_ms</code>, <code>offset_from_start_ms</code></td></tr>
+<tr><td style="text-align: left">Выходные поля**</td><td style="text-align: left">- (статус <code>200</code> без тела, только заголовки)</td></tr>
+<tr><td style="text-align: left">Ошибки</td><td style="text-align: left"><code>400</code>, <code>401</code>, <code>403</code>, <code>404</code>, <code>429</code>, <code>502</code></td></tr>
+<tr><td style="text-align: left">Версия</td><td style="text-align: left"><code>v1</code></td></tr>
+<tr><td style="text-align: left">Формат</td><td style="text-align: left">JSON</td></tr>
+<tr><td style="text-align: left">Обеспечение идемпотентности</td><td style="text-align: left">Передать заголовок <code>Idempotency-Key: &lt;UUID&gt;</code>. Ответ может содержать <code>X-Idempotent-Replayed: true</code></td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">Endpoint</th><th style="text-align: left">POST /processed/events</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left">Назначение</td><td style="text-align: left">Отправить решение проктора по событию</td></tr>
+<tr><td style="text-align: left">Входные поля</td><td style="text-align: left"><code>event_id</code>, <code>session_id</code>, <code>decision</code> : <code>decision_id</code>, <code>proctor_id</code>, <code>type</code>, <code>comment</code>, <code>decided_at_unix_ms</code></td></tr>
+<tr><td style="text-align: left">Выходные поля</td><td style="text-align: left">- (статус <code>200</code> без тела, только заголовки)</td></tr>
+<tr><td style="text-align: left">Ошибки</td><td style="text-align: left"><code>400</code>, <code>401</code>, <code>403</code>, <code>404</code>, <code>409</code>, <code>502</code></td></tr>
+<tr><td style="text-align: left">Версия</td><td style="text-align: left"><code>v1</code></td></tr>
+<tr><td style="text-align: left">Формат</td><td style="text-align: left">JSON</td></tr>
+<tr><td style="text-align: left">Обеспечение идемпотентности</td><td style="text-align: left">Передать заголовок <code>Idempotency-Key: &lt;UUID&gt;</code>. Ответ может содержать <code>X-Idempotent-Replayed: true</code></td></tr>
+</tbody>
+</table>
+</div>
 <h2 id="2-websockets-часть-api-для-procoting-server"><a class="header" href="#2-websockets-часть-api-для-procoting-server">2. WebSockets часть API для Procoting Server</a></h2>
 <p>Предназначен преимущественно для событий для системы прокторинга. API позволяет клиентам подписываться на события античита и получать обработанные события прокторинга в реальном времени.</p>
 <h3 id="основной-маршрут-v1ws"><a class="header" href="#основной-маршрут-v1ws">Основной маршрут: <code>/v1/ws</code></a></h3>
